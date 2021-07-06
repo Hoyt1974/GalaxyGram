@@ -8,7 +8,11 @@
   </head>
   <body>
     {% include 'header.html' %}
+    <h1>Hello Galaxy</h1>
     {% block content %}
+    {% if incoming %}
+    {{incoming}}
+    {% endif %}
     {% endblock %}
   </body>
 </html>
