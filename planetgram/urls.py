@@ -21,5 +21,6 @@ from authentication import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index_view, name='home'),
-    path('login/', views.login_view, name='login')
+    path('login/', views.login_view, name='login'),
+    path('logout', views.logout_view)
 ]

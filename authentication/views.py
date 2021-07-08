@@ -10,14 +10,14 @@ def login_view(request):
     form = LoginForm(request.POST)
     if form.is_valid():
       data=form.cleaned_data
-      log=authenticate(
+      user=authenticate(
         request,
-        username=data.get('username'),
-        password=data.get('password')
+        username=data['username'],
+        password=data['password']
       )
-      if log:
-        login(request, log)
-        # log.save()
+      if user:
+        login(request, user)
+        user.save()
         return HttpResponseRedirect(request.GET.get("next", "/"))
 
   form = LoginForm()
@@ -27,6 +27,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse('login'))
+
 
 def index_view(request):
   if request.user.is_authenticated:
