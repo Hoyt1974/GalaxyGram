@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+      GalaxyGram
+    </title>
+  </head>
+  <body>
+    {% include 'header.html' %}
+    <h1>Hello Galaxy</h1>
+    {% block content %}
+    {% if incoming %}
+    {{incoming}}
+    {% endif %}
+    {% endblock %}
+  <hr />
+    <a href="/">Home</a>
+    <br />
+    
+  </body>
+</html>
