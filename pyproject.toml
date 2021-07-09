@@ -11,6 +11,7 @@ authors = [
 python = "^3.9"
 django-503 = "^0.1"
 Django = "^3.2.5"
+requests = "^2.25.1"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.5.7"
