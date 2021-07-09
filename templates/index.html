@@ -7,12 +7,18 @@
     </title>
   </head>
   <body>
-    {% include 'header.html' %}
-    <h1>Hello Galaxy</h1>
-    {% block content %}
-    {% if incoming %}
-    {{incoming}}
+
+    {% if user.is_authenticated %}
+
+
+    {% else %}
+    <a href='/login/'>Log in</a>
     {% endif %}
-    {% endblock %}
+  <hr />
+    <a href="/">Home</a>
+    <a href="/logout">Log out</a>
+    <br />
+    
+
   </body>
 </html>
