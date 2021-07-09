@@ -19,7 +19,11 @@ from django.urls import path
 from authentication import views
 from planetuser.views import index_view
 from planetmodel.views import planet_view
+from planetpost.views import planet_post_detail, post_form_view
 # from planetuser import views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +31,10 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view),
     path('planet/', planet_view, name='planet'),
+    path('planet_post/<int:post_id>/', planet_post_detail, name="post"),
+    path('addpost/', post_form_view, name='addpost'),
 ]
 
+if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL,
+                              document_root=settings.MEDIA_ROOT)
