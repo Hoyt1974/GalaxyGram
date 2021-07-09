@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from planetuser import views
+from planetuser.views import index_view
+from planetmodel.views import planet_view
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index_view, name='home')
-]
+    path('', index_view, name='index'),
+    path('planet/', planet_view, name='planet'),
+ ]
