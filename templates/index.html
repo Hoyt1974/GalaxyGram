@@ -7,8 +7,8 @@
     </title>
   </head>
   <body>
-    {% if user.is_authenticated %}
     {% include 'header.html' %}
+    {% if user.is_authenticated %}
     <h1>Hello Galaxy</h1>
     {% block content %}
     {% if incoming %}
@@ -18,10 +18,7 @@
     {% else %}
     <a href='/login/'>Log in</a>
     {% endif %}
-  <hr />
-    <a href="/">Home</a>
-    <a href="/logout">Log out</a>
+    <hr />
     <br />
-    
   </body>
 </html>
