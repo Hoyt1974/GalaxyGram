@@ -19,7 +19,7 @@ from django.urls import path
 from authentication import views
 from planetuser.views import index_view
 from planetmodel.views import planet_view
-from planetpost.views import planet_post_detail, post_form_view
+from planetpost.views import planet_post_detail, post_form_view, add_comment#, planet_comments_list
 # from planetuser import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -33,6 +33,9 @@ urlpatterns = [
     path('planet/', planet_view, name='planet'),
     path('planet_post/<int:post_id>/', planet_post_detail, name="post"),
     path('addpost/', post_form_view, name='addpost'),
+    path('planet_post/<int:post_id>/add_comment/', add_comment, name='addcomment'),
+    # path('comment/', planet_comments_list, name='comment'), change to add comment view
+
 ]
 
 if settings.DEBUG:

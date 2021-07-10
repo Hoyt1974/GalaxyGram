@@ -8,6 +8,13 @@ class PlanetPostForm(forms.ModelForm):
         fields = ['planet_img', 'post']
 
 
+class UserPostForm(forms.ModelForm):
+  
+    class Meta:
+        model = Planet_Comments
+        fields = ['comment']
+
+
     #     planet_img = models.ImageField(upload_to='images/')
     # author = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     # post = models.CharField(max_length=140)

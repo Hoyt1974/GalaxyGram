@@ -1,6 +1,6 @@
-from planetpost.forms import PlanetPostForm
+from planetpost.forms import PlanetPostForm, UserPostForm
 from django.shortcuts import render, redirect
-from planetpost.models import Planet_Post
+from planetpost.models import Planet_Comments, Planet_Post
 
 
 def post_form_view(request):
@@ -14,6 +14,26 @@ def post_form_view(request):
 
 def planet_post_detail(request, post_id: int):
     post = Planet_Post.objects.get(id=post_id)
-    return render(request, 'post_detail.html', {'post': post})
+    comments = Planet_Comments.objects.filter(post=post)
+    return render(request, 'post_detail.html', {'post': post, 'comments': comments})
 
+
+def add_comment(request, post_id: int):
+    post = Planet_Post.objects.get(id=post_id)
+    if request.method == "POST":
+        form = UserPostForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.author = request.user
+            comment.save()
+            return redirect("post", post_id)
+    form = UserPostForm()
+    return render(request, 'generic_form.html', {'form': form})
+        
+        
+
+
+    
 
