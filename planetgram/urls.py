@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 
 from authentication import views
+from planetuser.urls import urlpatterns as api_urls
 from planetuser.views import index_view
 from planetmodel.views import planet_view
 from planetpost.views import planet_post_detail, post_form_view, add_comment, post_list, upvote_view, downvote_view ,total_vote
@@ -29,7 +30,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index_view, name='home'),
     path('login/', views.login_view, name='login'),
-    path('logout/', views.logout_view),
+    path('logout/', views.logout_view,name= 'logout'),
     path('planet/', planet_view, name='planet'),
     path('planet_post/<int:post_id>/', planet_post_detail, name="post"),
     path('addpost/', post_form_view, name='addpost'),
@@ -41,6 +42,8 @@ urlpatterns = [
    
 
 ]
+urlpatterns += api_urls
+
 
 if settings.DEBUG:
         urlpatterns += static(settings.MEDIA_URL,
