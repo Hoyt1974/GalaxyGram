@@ -8,17 +8,21 @@
   </head>
   <body>
     {% include 'header.html' %}
-    {% if user.is_authenticated %}
     <h1>Hello Galaxy</h1>
     {% block content %}
     {% if incoming %}
     {{incoming}}
     {% endif %}
     {% endblock %}
+
+    {% if user.is_authenticated %}
+
+
     {% else %}
     <a href='/login/'>Log in</a>
     {% endif %}
     <hr />
     <br />
+  
   </body>
 </html>

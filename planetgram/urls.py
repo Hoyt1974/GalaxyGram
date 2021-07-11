@@ -15,13 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+
 from authentication import views
 from planetuser.urls import urlpatterns as api_urls
+from planetuser.views import index_view
+from planetmodel.views import planet_view
+# from planetuser import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index_view, name='home'),
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view,name= 'logout'),
+    path('planet/', planet_view, name='planet'),
 ]
 urlpatterns += api_urls
+
+
