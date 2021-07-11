@@ -1,0 +1,28 @@
+<h1>Post Details</h1>
+Posted by: {{post.author}}<br />
+{{post.post}}<br />Posted on: {{post.creation_time}}
+<br />
+<br />
+<img
+  src="{{post.planet_img.url}}"
+  alt="{{post.author}}"
+  width="300px"
+  height="300px"
+/>
+<br />
+<li><a href="/up_vote/{{post.id}}/">Upvote</a></li>
+<li><a href="/down_vote/{{post.id}}/">Downvote</a></li>
+<li>Total Votes: {{ post.total_votes }}</li>
+<ul>
+  <a href="add_comment/">add comment</a>
+  <h3>Comments</h3>
+  <br />
+  {% for comment in comments %}
+  <li>
+    Comment by: {{comment.author}}<br />
+    {{comment.comment}}<br />
+    Posted on: {{comment.creation_time}}
+  </li>
+  {% endfor %}
+</ul>
+<a href="/">Home Page</a>

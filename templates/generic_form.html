@@ -1,5 +1,5 @@
-
-<form method="POST" actions="">
+<a href="/">Home</a>
+<form method="POST" actions="" enctype="multipart/form-data">
   {% csrf_token %}
   {{ form.as_p }}
   <input type='submit' value='clickety'>

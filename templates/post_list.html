@@ -1,0 +1,11 @@
+<p>{{ author.Name }}</p>
+</<ul>
+  {% for foo in posts %}
+  <li>
+    <a href="/planet_post/{{ foo.id }}"><img src="{{foo.planet_img.url}}" height="50px" width="50px"></a>
+  </li>
+  {% endfor %}
+</ul>
+</br>
+<a  href="/">Home Page</a>
+
