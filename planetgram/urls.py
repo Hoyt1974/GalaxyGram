@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 
 from authentication import views
-from planetuser.urls import urlpatterns as api_urls
+# from planetuser.urls import urlpatterns as api_urls
 from planetuser.views import index_view
 from planetmodel.views import planet_view
 from planetpost.views import planet_post_detail, post_form_view, add_comment, post_list, upvote_view, downvote_view ,total_vote
@@ -42,7 +42,7 @@ urlpatterns = [
    
 
 ]
-urlpatterns += api_urls
+# urlpatterns += api_urls
 
 
 if settings.DEBUG:
