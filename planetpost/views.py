@@ -35,6 +35,26 @@ def add_comment(request, post_id: int):
 def post_list(request):
     posts = Planet_Post.objects.all()
     return render(request, 'post_list.html', {'posts': posts})
+
+
+def upvote_view(request, post_id):
+    vote = Planet_Post.objects.get(id=post_id)
+    vote.total_votes += 1
+    vote.up_vote += 1
+    vote.save()
+    return redirect(request.META['HTTP_REFERER'])
+
+
+def downvote_view(request, post_id):
+    vote = Planet_Post.objects.get(id=post_id)
+    vote.total_votes -= 1
+    vote.down_vote += 1
+    vote.save()
+    return redirect(request.META['HTTP_REFERER'])
+
+def total_vote(request):
+    votes = Planet_Post.objects.all().order_by('-total_votes')
+    return render(request, "post_detail.html", {"votes": votes})
         
         
 
