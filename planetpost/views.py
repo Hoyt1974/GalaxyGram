@@ -31,6 +31,10 @@ def add_comment(request, post_id: int):
             return redirect("post", post_id)
     form = UserPostForm()
     return render(request, 'generic_form.html', {'form': form})
+
+def post_list(request):
+    posts = Planet_Post.objects.all()
+    return render(request, 'post_list.html', {'posts': posts})
         
         
 
