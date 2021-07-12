@@ -3,21 +3,21 @@ from django.shortcuts import render, redirect
 from planetpost.models import Planet_Comments, Planet_Post
 from planetmodel.models import Body
 
-def post_form_view(request, planet_id):
+def post_form_view(request):
     if request.method =="POST":
-        body=Body.objects.get(id=planet_id)
+        # body=Body.objects.get(id=planet_id)
         form = PlanetPostForm(request.POST, request.FILES)
-        your_post = Planet_Post.objects.create(author=request.user, post=request.POST['post'], planet_img=request.FILES['planet_img'], body= body)
+        if form.is_valid():
+            data = form.cleaned_data
+            your_post = Planet_Post.objects.create(author=request.user, post=data.get('post'), body=data.get('body'), planet_img=data.get('planet_img'))
         return redirect("post", your_post.pk)
     form = PlanetPostForm()
     return render(request, 'generic_form.html', {'form': form})
-
 
 def planet_post_detail(request, post_id: int):
     post = Planet_Post.objects.get(id=post_id)
     comments = Planet_Comments.objects.filter(post=post)
     return render(request, 'post_detail.html', {'post': post, 'comments': comments})
-
 
 def add_comment(request, post_id: int):
     post = Planet_Post.objects.get(id=post_id)
