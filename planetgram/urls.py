@@ -32,7 +32,7 @@ urlpatterns = [
     path('logout/', views.logout_view,name= 'logout'),
     path('planet/', planet_view, name='planet'),
     path('planet_post/<int:post_id>/', planet_post_detail, name="post"),
-    path('addpost/<int:planet_id>/', post_form_view, name='addpost'),
+    path('addpost/', post_form_view, name='addpost'),
     path('planet_post/<int:post_id>/add_comment/', add_comment, name='addcomment'),
     path('planet_post/post_list/', post_list, name='postlist'),
     path("up_vote/<int:post_id>/", upvote_view, name="Upvote"),
@@ -42,7 +42,7 @@ urlpatterns = [
 
 ]
 # urlpatterns += api_urls
-
+# <int:planet_id>/'
 
 if settings.DEBUG:
         urlpatterns += static(settings.MEDIA_URL,

@@ -17,7 +17,9 @@ class Body(models.Model):
     axialTilt = models.FloatField(default=1.0)
     avgTemp = models.FloatField(default=1.0)
 
-
+    class Meta:
+        ordering = ('name',)
+        
     def __str__(self):
         return self.name
 
