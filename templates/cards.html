@@ -1,6 +1,5 @@
 {% for post in incoming %}
-<div class="card">
-    {{post.planet_img}}
+<div class="card", onclick='location.href="planet_post/{{post.id}}";' style="cursor: pointer;">
     <br>
     {{post.author}}
     <br>

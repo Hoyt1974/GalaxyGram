@@ -1,8 +1,10 @@
 from django.db import models
-from planetuser.models import MyUser
 from django.utils import timezone
+from planetuser.models import MyUser
+from planetmodel.models import Body
 
 class Planet_Post(models.Model):
+    body= models.ForeignKey(Body, on_delete=models.CASCADE, related_name="posts")
     title = models.CharField(max_length=200)
     planet_name = models.CharField(max_length=200)
     planet_img = models.ImageField(upload_to='images/')
