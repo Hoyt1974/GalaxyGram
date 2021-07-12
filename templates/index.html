@@ -4,11 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GalaxyGram</title>
   </head>
-  <body>
-    {% if user.is_authenticated %} {% else %}
-    <a href="/login/">Log in</a>
+  <hr>
+    {% if user.is_authenticated %}
     
-    {% endif %}
     <hr />
     <a href="/">Home</a>
     <br />
@@ -19,6 +17,22 @@
     <a href="planet_post/post_list/">pics</a>
     <br />
     <a href="/addpost/">Post Image</a>
-
+    {% if incoming %}
+    {% for post in incoming %}
+<hr>
+    {{post.planet_img}}
+    <br>
+    {{post.author}}
+    <br>
+    {{post.post}}
+    <br>
+    {{post.creation_time}}
+    <hr>
+    {% endfor %}
+    {% endif %}
+    {% else %}
+    
+    <a href="/login/">Log in</a>
+    {% endif %}
   </body>
-</html>
+  </html>

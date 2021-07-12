@@ -3,7 +3,7 @@ from django.shortcuts import render, reverse, redirect
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from authentication.forms import LoginForm
-
+from planetpost.models import Planet_Post
 # Create your views here.
 
 def signup_view(request):
@@ -50,6 +50,6 @@ def logout_view(request):
 
 def index_view(request):
     if request.user.is_authenticated:
-        placeholder = "Placeholder.objects.order_by('post_created')"
-        return render(request, 'index.html', {'incoming': placeholder})
+        posts = Planet_Post.objects.all()
+        return render(request, 'index.html', {'incoming': posts})
     return HttpResponseRedirect(reverse('login'))
