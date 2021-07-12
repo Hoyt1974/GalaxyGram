@@ -43,8 +43,11 @@ def planet_view(request):
 
 def planet_detail_view(request, planet_id):
     planet = Body.objects.get(id=planet_id)
+    posts = planet.posts.all()
+    for post in posts:
+        print(post.post)
     print(planet.id)
-    return render(request, 'planet_detail.html', {'planet': planet})
+    return render(request, 'planet_detail.html', {'planet': planet, 'posts': posts})
 
 
 
