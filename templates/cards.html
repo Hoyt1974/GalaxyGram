@@ -1,0 +1,12 @@
+{% for post in incoming %}
+<div class="card">
+    {{post.planet_img}}
+    <br>
+    {{post.author}}
+    <br>
+    {{post.post}}
+    <br>
+    {{post.creation_time}}
+    <hr>
+</div>
+{% endfor %}
