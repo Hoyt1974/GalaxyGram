@@ -1,4 +1,8 @@
 <a href="/">Home Page</a>
 {% for planet in planets %}
-    <div>{{planet.name}}</div>
+    <ul>
+        <li>
+            <a href="/planet/{{planet.id}}/">{{planet.name}}</a>
+        </li>
+    </ul>
 {% endfor %}
