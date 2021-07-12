@@ -13,7 +13,7 @@ def signup_view(request):
       data = form.cleaned_data
       if MyUser.objects.filter(username=data['username']):
         return HttpResponseRedirect(reverse('login'))
-      newbie = MyUser.objects.create(
+      newbie = MyUser.objects.create_user(
         username=data['username'],
         password=data['password']
     )
