@@ -3,6 +3,8 @@ from planetuser.models import MyUser
 from django.utils import timezone
 
 class Planet_Post(models.Model):
+    title = models.CharField(max_length=200)
+    planet_name = models.CharField(max_length=200)
     planet_img = models.ImageField(upload_to='images/')
     author = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     post = models.CharField(max_length=140)

@@ -55,9 +55,23 @@ def downvote_view(request, post_id):
 def total_vote(request):
     votes = Planet_Post.objects.all().order_by('-total_votes')
     return render(request, "post_detail.html", {"votes": votes})
-        
-        
 
 
-    
+def comment_upvote_view(request, comment_id):
+    vote = Planet_Comments.objects.get(id=comment_id)
+    vote.total_votes += 1
+    vote.up_vote += 1
+    vote.save()
+    return redirect(request.META['HTTP_REFERER'])
 
+
+def comment_downvote_view(request, comment_id):
+    vote = Planet_Comments.objects.get(id=comment_id)
+    vote.total_votes -= 1
+    vote.down_vote += 1
+    vote.save()
+    return redirect(request.META['HTTP_REFERER'])
+
+def comment_total_vote(request):
+    votez = Planet_Comments.objects.all().order_by('-total_votes')
+    return render(request, "post_detail.html", {"votez": votez})
