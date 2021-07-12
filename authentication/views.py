@@ -1,9 +1,28 @@
+from planetuser.models import MyUser
 from django.shortcuts import render, reverse, redirect
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from authentication.forms import LoginForm
 
 # Create your views here.
+
+def signup_view(request):
+  if request.method =="POST":
+    form = LoginForm(request.POST)
+    if form.is_valid():
+      data = form.cleaned_data
+      if MyUser.objects.filter(username=data['username']):
+        return HttpResponseRedirect(reverse('login'))
+      newbie = MyUser.objects.create(
+        username=data['username'],
+        password=data['password']
+    )
+    newbie.save()
+    login(request, newbie)
+    return HttpResponseRedirect(reverse('home'))
+  form=LoginForm()
+  return render(request, 'generic_form.html', {'form':form })
+
 
 
 def login_view(request):

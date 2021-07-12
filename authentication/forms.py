@@ -1,7 +1,11 @@
 from django import forms
-from django.db.models.fields import CharField
 
 
 class LoginForm(forms.Form):
   username = forms.CharField(max_length=33)
-  password = forms.CharField(widget=forms.PasswordInput)
+  password = forms.CharField(widget=forms.PasswordInput, max_length=33)
+
+
+class SignupForm(forms.Form):
+  username = forms.CharField(max_length=33)
+  password = forms.CharField(widget=forms.PasswordInput, max_length=33)

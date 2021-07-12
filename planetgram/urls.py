@@ -17,11 +17,9 @@ from django.contrib import admin
 from django.urls import path
 
 from authentication import views
-# from planetuser.urls import urlpatterns as api_urls
 from planetuser.views import index_view
 from planetmodel.views import planet_view
 from planetpost.views import planet_post_detail, post_form_view, add_comment, post_list, upvote_view, downvote_view ,total_vote
-# from planetuser import views
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -29,6 +27,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index_view, name='home'),
+    path('signup/', views.signup_view),
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view,name= 'logout'),
     path('planet/', planet_view, name='planet'),
@@ -39,7 +38,6 @@ urlpatterns = [
     path("up_vote/<int:post_id>/", upvote_view, name="Upvote"),
     path("down_vote/<int:post_id>/", downvote_view, name="Downvote"),
     path('total_vote/', total_vote),
-   
 
 ]
 # urlpatterns += api_urls
