@@ -15,8 +15,9 @@
 <a href="/addpost/">Make a Post!</a>
 
 {% for foo in posts %}
-<li>
+<a>
   {{ foo.body.name }}
-  <img src="{{ foo.planet_img.url }}" height="50px" width="50px" />
+  <a href="/planet_post/{{ foo.id }}"><img src="{{ foo.planet_img.url }}" height="50px" width="50px" /></a>
 </li>
 {% endfor %}
+
