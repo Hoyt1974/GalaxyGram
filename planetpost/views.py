@@ -108,5 +108,5 @@ def post_edit(request, post_id):
     return render(request, "generic_form.html", {"form": form})
 
 
-    
+
 
