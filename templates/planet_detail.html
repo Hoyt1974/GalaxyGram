@@ -13,3 +13,10 @@
 <h3>Like this? Post about it for everyone to see!</h3>
 
 <a href="/addpost/">Make a Post!</a>
+
+{% for foo in posts %}
+<li>
+  {{ foo.body.name }}
+  <img src="{{ foo.planet_img.url }}" height="50px" width="50px" />
+</li>
+{% endfor %}
