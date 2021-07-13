@@ -4,10 +4,28 @@ from django.http.response import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from authentication.forms import LoginForm
 from planetpost.models import Planet_Post
+from django.views import View
 # Create your views here.
 
-def signup_view(request):
-  if request.method =="POST":
+
+def error_404_view(request, exception):
+  return render(request, '404.html')
+
+
+
+def error_500_view(request, *args, **kwargs):
+  return render(request, '500.html')
+
+
+
+class SignupView(View):
+
+  def get(self, request):
+    form=LoginForm()
+    return render(request, 'generic_form.html', {'form':form })
+
+
+  def post(self, request):
     form = LoginForm(request.POST)
     if form.is_valid():
       data = form.cleaned_data
@@ -20,8 +38,7 @@ def signup_view(request):
     newbie.save()
     login(request, newbie)
     return HttpResponseRedirect(reverse('home'))
-  form=LoginForm()
-  return render(request, 'generic_form.html', {'form':form })
+
 
 
 
