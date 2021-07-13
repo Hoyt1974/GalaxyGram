@@ -1,5 +1,5 @@
 <h1>Post Details</h1>
-<a href='/planet/{{post.body.id}}/'><h2>{{post.body}}</h2></a>
+<a href="/planet/{{post.body.id}}/"><h2>{{post.body}}</h2></a>
 Posted by: <br />{{post.author}}<br /><br />
 Title:<br />
 {{post.title}} {{post.post}}<br /><br />Posted on: {{post.creation_time}}
@@ -28,6 +28,7 @@ Title:<br />
   <li><a href="/comment_up_vote/{{comment.id}}/">Upvote</a></li>
   <li><a href="/comment_down_vote/{{comment.id}}/">Downvote</a></li>
   <li>Total Votes: {{ comment.total_votes }}</li>
+  <li><a href="/comment_edit/{{comment.id}}/">Edit</a></li>
   {% endfor %}
 </ul>
 <a href="/">Home Page</a>

@@ -1,5 +1,5 @@
 from planetpost.forms import PlanetPostForm, UserPostForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from planetpost.models import Planet_Comments, Planet_Post
 from planetmodel.models import Body
 
@@ -58,6 +58,39 @@ def total_vote(request):
     return render(request, "post_detail.html", {"votes": votes})
         
         
+def comment_upvote_view(request, comment_id):
+    vote = Planet_Comments.objects.get(id=comment_id)
+    vote.total_votes += 1
+    vote.up_vote += 1
+    vote.save()
+    return redirect(request.META['HTTP_REFERER'])
+
+
+def comment_downvote_view(request, comment_id):
+    vote = Planet_Comments.objects.get(id=comment_id)
+    vote.total_votes -= 1
+    vote.down_vote += 1
+    vote.save()
+    return redirect(request.META['HTTP_REFERER'])
+
+def comment_total_vote(request):
+    votez = Planet_Comments.objects.all().order_by('-total_votes')
+    return render(request, "post_detail.html", {"votez": votez})
+
+
+def comment_edit(request, comment_id):
+    comment = get_object_or_404(Planet_Comments, id=comment_id)
+    # if request.user is the same as comment.author:
+    if request.method == "POST":
+        form = UserPostForm(request.POST, instance=comment)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            # comment.author = request.user
+            comment.save()
+            return redirect("post", comment.post.id)
+    else:
+        form = UserPostForm(instance=comment)
+    return render(request, "generic_form.html", {"form": form})
 
 
     
