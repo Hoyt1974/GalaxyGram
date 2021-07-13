@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from planetmodel.models import Body
+from planetpost.models import Planet_Post
 import requests
 
 
@@ -43,8 +44,9 @@ def planet_view(request):
 
 def planet_detail_view(request, planet_id):
     planet = Body.objects.get(id=planet_id)
+    post = Planet_Post.objects.filter(body=planet)
     print(planet.id)
-    return render(request, 'planet_detail.html', {'planet': planet})
+    return render(request, 'planet_detail.html', {'planet': planet, 'posts': post})
 
 
 

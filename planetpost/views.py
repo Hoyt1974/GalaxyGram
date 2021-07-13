@@ -93,5 +93,20 @@ def comment_edit(request, comment_id):
     return render(request, "generic_form.html", {"form": form})
 
 
+def post_edit(request, post_id):
+    post = get_object_or_404(Planet_Post, id=post_id)
+    # if request.user is the same as post.author:
+    if request.method == "POST":
+        form = PlanetPostForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            # post.author = request.user
+            post.save()
+            return redirect("post", post.id)
+    else:
+        form = PlanetPostForm(instance=post)
+    return render(request, "generic_form.html", {"form": form})
+
+
     
 
