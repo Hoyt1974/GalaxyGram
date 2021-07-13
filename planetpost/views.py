@@ -108,5 +108,8 @@ def post_edit(request, post_id):
     return render(request, "generic_form.html", {"form": form})
 
 
-
-
+def comment_delete(request, comment_id):
+    comment = get_object_or_404(Planet_Comments, id=comment_id)
+    if request.user == comment.author:
+        comment.delete()
+    return redirect(request.META['HTTP_REFERER'])
