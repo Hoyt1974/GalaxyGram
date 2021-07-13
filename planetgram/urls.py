@@ -19,7 +19,7 @@ from django.urls import path
 from authentication import views
 from planetuser.views import index_view
 from planetmodel.views import planet_view, planet_detail_view
-from planetpost.views import planet_post_detail, post_form_view, add_comment, post_list, upvote_view, downvote_view, total_vote, comment_upvote_view, comment_downvote_view, comment_total_vote, comment_edit, post_edit
+from planetpost.views import planet_post_detail, post_form_view, add_comment, post_list, upvote_view, downvote_view, total_vote, comment_upvote_view, comment_downvote_view, comment_total_vote, comment_edit, post_edit, comment_delete
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -43,6 +43,7 @@ urlpatterns = [
     path('comment_total_vote', comment_total_vote),
     path('comment_edit/<int:comment_id>/', comment_edit, name="CommentEdit"),
     path('post_edit/<int:post_id>/', post_edit, name="PostEdit"),
+    path('comment_delete/<int:comment_id>/', comment_delete, name="CommentDelete"),
     path("planet/<int:planet_id>/", planet_detail_view, name="planet_detail"),
 ]
 # urlpatterns += api_urls
