@@ -113,3 +113,12 @@ def comment_delete(request, comment_id):
     if request.user == comment.author:
         comment.delete()
     return redirect(request.META['HTTP_REFERER'])
+
+
+def post_delete(request, post_id):
+    post = get_object_or_404(Planet_Post, id=post_id)
+    if request.user == post.author:
+        post.delete()
+        return redirect("home")
+    else:
+        return redirect(request.META['HTTP_REFERER'])
