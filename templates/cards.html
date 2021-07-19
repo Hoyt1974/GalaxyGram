@@ -1,7 +1,7 @@
 {% for post in incoming %}
 <div class="card", onclick='location.href="planet_post/{{post.id}}";' style="cursor: pointer;">
     <br>
-    {{post.author}}
+    <a href='/profile/{{post.author.id}}/'>{{post.author}}</a>
     <br>
     {{post.post}}
     <br>

@@ -1,0 +1,33 @@
+<h1>Ye Olde Profile Page</h1>
+#No, that's not permanent, I just put it there
+{% if user %}
+<h2>{{user.username}}</h2>
+
+<span>Date joined: {{user.date_joined }}</span>
+<span>Last seen: {{ user.last_login }}</span>
+<p class="name">{{ user.first_name }} {{user.last_name }}</p>
+<a href= '/admin/'>{{ user.email }}</a>
+{% if user.groups %}
+{% for group in user.groups.all %}
+{{ group.id }}
+{% endfor %}
+{% endif %}
+{% if user.bio %}
+<h5>{{user.bio}}</h5>
+{% endif %}
+{% if user.id == request.user.id %}
+<button><a href='/edit/{{user.id}}/'>Edit profile</a>
+</button>
+{% endif %}
+{% endif %}
+<br>
+<br>
+<a href='/'>Home</a>
+{% for post in user.posts.all %}
+<a href='/planet_post/{{ post.id }}/'>{{ post.title }}</a>
+<br>
+<a href='/planet/{{ post.body.id }}/'>
+<img src='{{ post.planet_img.url }}' height="50px" width="50px">
+</a>
+<hr>
+{% endfor %}
