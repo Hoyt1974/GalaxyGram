@@ -1,11 +1,12 @@
 {% for post in incoming %}
 <div class="card", onclick='location.href="planet_post/{{post.id}}";' style="cursor: pointer;">
     <br>
-    <a href='/profile/{{post.author.id}}/'>{{post.author}}</a>
-    <br>
+    <img src='{{ post.planet_img.url }}' height='50px' width='50px'>
     {{post.post}}
     <br>
     {{post.creation_time}}
+    <br>
+    <a href='/profile/{{post.author.id}}/'>{{post.author}}</a>
     <hr>
 </div>
 {% endfor %}
