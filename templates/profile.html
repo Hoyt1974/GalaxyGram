@@ -1,18 +1,22 @@
-<h1>Ye Olde Profile Page</h1>
-#No, that's not permanent, I just put it there
 {% if user %}
-<h2>{{user.username}}</h2>
+<h1>User Profile<br>
+{{user.username}}</h1>
 
 <span>Date joined: {{user.date_joined }}</span>
-<span>Last seen: {{ user.last_login }}</span>
+<br>
+<span>Last seen: {{ user.last_login }}</span><br><br>
+<strong>Name:</strong>
 <p class="name">{{ user.first_name }} {{user.last_name }}</p>
+<strong>Email:</strong><br>
 <a href= '/admin/'>{{ user.email }}</a>
-{% if user.groups %}
+<!-- {% if user.groups %}
 {% for group in user.groups.all %}
 {{ group.id }}
 {% endfor %}
-{% endif %}
+{% endif %} -->
+<br><br>
 {% if user.bio %}
+<strong>Bio:</strong>
 <h5>{{user.bio}}</h5>
 {% endif %}
 {% if user.id == request.user.id %}
@@ -23,6 +27,7 @@
 <br>
 <br>
 <a href='/'>Home</a>
+<hr>
 {% for post in user.posts.all %}
 <a href='/planet_post/{{ post.id }}/'>{{ post.title }}</a>
 <br>
