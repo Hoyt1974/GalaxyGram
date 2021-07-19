@@ -1,11 +1,33 @@
 {% for post in incoming %}
-<div class="card", onclick='location.href="planet_post/{{post.id}}";' style="cursor: pointer;">
+<!-- <div class="card", onclick='location.href="planet_post/{{post.id}}";' style="cursor: pointer;">
     <br>
     <a href='/profile/{{post.author.id}}/'>{{post.author}}</a>
+    <img
+    src="{{post.planet_img.url}}"
+    alt="{{post.author}}"
+    width="300px"
+    height="300px"
+  />
     <br>
     {{post.post}}
     <br>
     {{post.creation_time}}
     <hr>
-</div>
+</div> -->
+<div style="display: flex; justify-content: center;">
+    <div style="width: 600px;">
+      <div class="card" onclick='location.href="planet_post/{{post.id}}";' style="cursor: pointer;">
+        <div class="card-image">
+          <img src="{{post.planet_img.url}}">
+          <span class="card-title">{{post.title}}</span>
+        </div>
+        <div class="card-content">
+          <p>{{post.post}}</p>
+        </div>
+        <div class="card-action">
+          <a href="/profile/{{post.author.id}}/">{{post.author}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endfor %}
