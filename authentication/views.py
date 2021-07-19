@@ -22,7 +22,8 @@ class SignupView(View):
 
   def get(self, request):
     form=LoginForm()
-    return render(request, 'generic_form.html', {'form':form })
+    sign_log="Sign up?"
+    return render(request, 'generic_form.html', {'form':form, 'sign_log': sign_log })
 
 
   def post(self, request):
@@ -30,14 +31,18 @@ class SignupView(View):
     if form.is_valid():
       data = form.cleaned_data
       if MyUser.objects.filter(username=data['username']):
+        # I was debating what to do here, I had it reverse to login just because "cant make that user, it exists already"
+        # I was thinking about doing something else, just hadn't decided yet
+        # Like what? I dunno, an alert "What are you doing? That already exists! Are you stupid, human?"
         return HttpResponseRedirect(reverse('login'))
       newbie = MyUser.objects.create_user(
         username=data['username'],
         password=data['password']
     )
-    newbie.save()
-    login(request, newbie)
-    return HttpResponseRedirect(reverse('home'))
+      newbie.save()
+      login(request, newbie)
+    # form=LoginForm()  
+    return HttpResponseRedirect(request.GET.get("next", "/"))
 
 
 
@@ -57,7 +62,8 @@ def login_view(request):
         user.save()
         return HttpResponseRedirect(request.GET.get("next", "/"))
   form = LoginForm()
-  return render(request, 'generic_form.html', {'form': form})
+  sign_log = "Hi! Log in?"
+  return render(request, 'generic_form.html', {'form': form, 'sign_log': sign_log})
 
 
 def logout_view(request):

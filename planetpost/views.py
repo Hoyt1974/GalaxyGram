@@ -3,13 +3,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from planetpost.models import Planet_Comments, Planet_Post
 from planetmodel.models import Body
 
-def post_form_view(request):
+def post_form_view(request, planet_id):
     if request.method =="POST":
-        # body=Body.objects.get(id=planet_id)
+        body=Body.objects.get(id=planet_id)
         form = PlanetPostForm(request.POST, request.FILES)
         if form.is_valid():
             data = form.cleaned_data
-            your_post = Planet_Post.objects.create(author=request.user, post=data.get('post'), body=data.get('body'), planet_img=data.get('planet_img'))
+            your_post = Planet_Post.objects.create(author=request.user, post=data.get('post'), body=body, planet_img=data.get('planet_img'), title=data['title'])
         return redirect("post", your_post.pk)
     form = PlanetPostForm()
     return render(request, 'generic_form.html', {'form': form})

@@ -19,7 +19,7 @@ from django.urls import path
 
 from authentication import views
 from authentication.views import SignupView
-from planetuser.views import index_view
+from planetuser.views import ProfileView, profile_edit
 # from planetmodel.views import planet_view, planet_detail_view
 from planetpost.views import planet_post_detail, post_form_view, add_comment, post_list, upvote_view, downvote_view, total_vote, comment_upvote_view, comment_downvote_view, comment_total_vote, comment_edit, post_edit, comment_delete, post_delete
 from django.conf import settings
@@ -30,12 +30,14 @@ from planetmodel.views import PlanetDetailView, PlanetView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index_view, name='home'),
-    path('signup/', SignupView.as_view()),
+    path('signup/', SignupView.as_view(), name='signup'),
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view,name= 'logout'),
+    path('profile/<int:user_id>/', ProfileView.as_view()),
+    path('edit/<int:user_id>/', profile_edit),
     path('planet/', PlanetView.as_view(), name='planet'),
     path('planet_post/<int:post_id>/', planet_post_detail, name="post"),
-    path('addpost/', post_form_view, name='addpost'),
+    path('addpost/<int:planet_id>/', post_form_view, name='addpost'),
     path('planet_post/<int:post_id>/add_comment/', add_comment, name='addcomment'),
     path('planet_post/post_list/', post_list, name='postlist'),
     path("up_vote/<int:post_id>/", upvote_view, name="Upvote"),

@@ -4,6 +4,9 @@
 {% endif %}
 <form method="POST" actions="" enctype="multipart/form-data">
   {% csrf_token %}
+  {% if sign_log %}
+  <h2>{{ sign_log }}</h2>
+  {% endif %}
   {{ form.as_p }}
   <input type='submit' value='clickety'>
 </form>
