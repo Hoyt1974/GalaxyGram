@@ -1,3 +1,7 @@
+
+{% extends 'base.html' %}
+{% block content %}
+                
 {% if user %}
 <h1>User Profile<br>
 {{user.username}}</h1>
@@ -36,3 +40,4 @@
 </a>
 <hr>
 {% endfor %}
+{% endblock %}

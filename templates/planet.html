@@ -1,4 +1,5 @@
-<a href="/">Home Page</a>
+{% extends 'base.html' %}
+{% block content %}
 {% for planet in planets %}
     <ul>
         <li>
@@ -6,3 +7,4 @@
         </li>
     </ul>
 {% endfor %}
+{% endblock %}

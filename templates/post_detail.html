@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+
 <h1>Post Details</h1>
 <a href="/planet/{{post.body.id}}/"><h2>{{post.body}}</h2></a>
 Posted by: <br /><a href='/profile/{{post.author.id}}/'>{{post.author}}</a>
@@ -38,4 +41,5 @@ Title:<br />
   <li><a href="/comment_delete/{{comment.id}}/">Delete</a></li>
   {% endfor %}
 </ul>
-<a href="/">Home Page</a>
+
+{% endblock %}
