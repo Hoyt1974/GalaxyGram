@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+
 <a href="/">Home</a>
 
 <h2>{{planet.name}}</h2>
@@ -20,4 +23,5 @@
   <a href="/planet_post/{{ foo.id }}"><img src="{{ foo.planet_img.url }}" height="50px" width="50px"></a>
   <hr>
 {% endfor %}
+{% endblock %}
 
