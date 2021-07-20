@@ -1,26 +1,27 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
+<div class="detail-page">
+  <h2>{{planet.name}}</h2>
+  <p>English name: {{planet.englishName}}</p>
+  <p>Mass: {{planet.mass}}</p>
+  <p>Volume: {{planet.volume}}</p>
+  <p>Density: {{planet.density}}</p>
+  <p>Discovered By: {{planet.discoveredBy}}</p>
+  <p>Discovery Date: {{planet.discoveryDate}}</p>
+  <p>Axial Tilt: {{planet.axialTilt}}</p>
+  <p>Average Temperature: {{planet.avgTemp}}</p>
 
-<h2>{{planet.name}}</h2>
-<p>English name: {{planet.englishName}}</p>
-<p>Mass: {{planet.mass}}</p>
-<p>Volume: {{planet.volume}}</p>
-<p>Density: {{planet.density}}</p>
-<p>Discovered By: {{planet.discoveredBy}}</p>
-<p>Discovery Date: {{planet.discoveryDate}}</p>
-<p>Axial Tilt: {{planet.axialTilt}}</p>
-<p>Average Temperature: {{planet.avgTemp}}</p>
+  <h3>Like this? Post about it for everyone to see!</h3>
 
-<h3>Like this? Post about it for everyone to see!</h3>
+  <a href="/addpost/{{planet.id}}">Make a Post!</a>
+  <hr />
 
-<a href="/addpost/{{planet.id}}">Make a Post!</a>
-<hr>
-
-{% for foo in posts %}
+  {% for foo in posts %}
   <h4>{{ foo.title }}</h4>
-  <a href="/planet_post/{{ foo.id }}"><img src="{{ foo.planet_img.url }}" height="50px" width="50px"></a>
-  <hr>
-{% endfor %}
+  <a href="/planet_post/{{ foo.id }}"
+    ><img src="{{ foo.planet_img.url }}" height="50px" width="50px"
+  /></a>
+  <hr />
+  {% endfor %}
+</div>
 {% endblock %}
-
