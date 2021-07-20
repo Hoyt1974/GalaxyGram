@@ -1,22 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <!-- Compiled and minified CSS -->
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
 
-         <!-- Compiled and minified JavaScript -->
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <title>Galaxy Gram</title>
-</head>
-<body>
+  </head>
+  <body>
     {% include 'navbar.html' %}
-
-    <div class="container" >
-        {% block content %}
-        {% endblock %}
-      </div>
-</body>
+    <style>
+      body {
+        background: url('{% static "images/stars_720.png" %}');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        background-size: 100% auto;
+      }
+    </style>
+    <div class="container">{% block content %} {% endblock %}</div>
+  </body>
 </html>

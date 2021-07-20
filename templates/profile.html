@@ -1,43 +1,41 @@
+{% extends 'base.html' %} {% block content %}
+<div class="detail-page">
+  {% if user %}
+  <h2>
+    User Profile<br />
+    {{user.username}}
+  </h2>
 
-{% extends 'base.html' %}
-{% block content %}
-                
-{% if user %}
-<h1>User Profile<br>
-{{user.username}}</h1>
-
-<span>Date joined: {{user.date_joined }}</span>
-<br>
-<span>Last seen: {{ user.last_login }}</span><br><br>
-<strong>Name:</strong>
-<p class="name">{{ user.first_name }} {{user.last_name }}</p>
-<strong>Email:</strong><br>
-<a href= '/admin/'>{{ user.email }}</a>
-<!-- {% if user.groups %}
+  <span>Date joined: {{user.date_joined }}</span>
+  <br />
+  <span>Last seen: {{ user.last_login }}</span><br /><br />
+  <strong>Name:</strong>
+  <p class="name">{{ user.first_name }} {{user.last_name }}</p>
+  <strong>Email:</strong><br />
+  <a href="/admin/">{{ user.email }}</a>
+  <!-- {% if user.groups %}
 {% for group in user.groups.all %}
 {{ group.id }}
 {% endfor %}
 {% endif %} -->
-<br><br>
-{% if user.bio %}
-<strong>Bio:</strong>
-<h5>{{user.bio}}</h5>
-{% endif %}
-{% if user.id == request.user.id %}
-<button><a href='/edit/{{user.id}}/'>Edit profile</a>
-</button>
-{% endif %}
-{% endif %}
-<br>
-<br>
-<a href='/'>Home</a>
-<hr>
-{% for post in user.posts.all %}
-<a href='/planet_post/{{ post.id }}/'>{{ post.title }}</a>
-<br>
-<a href='/planet/{{ post.body.id }}/'>
-<img src='{{ post.planet_img.url }}' height="50px" width="50px">
-</a>
-<hr>
-{% endfor %}
+  <br /><br />
+  {% if user.bio %}
+  <strong>Bio:</strong>
+  <h5>{{user.bio}}</h5>
+  {% endif %} {% if user.id == request.user.id %}
+  <button><a href="/edit/{{user.id}}/">Edit profile</a></button>
+  {% endif %} {% endif %}
+  <br />
+  <br />
+  <a href="/">Home</a>
+  <hr />
+  {% for post in user.posts.all %}
+  <a href="/planet_post/{{ post.id }}/">{{ post.title }}</a>
+  <br />
+  <a href="/planet/{{ post.body.id }}/">
+    <img src="{{ post.planet_img.url }}" height="50px" width="50px" />
+  </a>
+  <hr />
+  {% endfor %}
+</div>
 {% endblock %}

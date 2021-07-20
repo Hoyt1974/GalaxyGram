@@ -1,10 +1,11 @@
-{% extends 'base.html' %}
-{% block content %}
-{% for planet in planets %}
-    <ul>
-        <li>
-            <a href="/planet/{{planet.id}}/">{{planet.name}}</a>
-        </li>
-    </ul>
-{% endfor %}
+{% extends 'base.html' %} {% block content %}
+<div id="planet">
+  {% for planet in planets %}
+  <ul>
+    <li>
+      <a href="/planet/{{planet.id}}/">{{planet.name}}</a>
+    </li>
+  </ul>
+  {% endfor %}
+</div>
 {% endblock %}
