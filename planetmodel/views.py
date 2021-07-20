@@ -1,7 +1,9 @@
+from django.core import paginator
 from django.shortcuts import render
 from planetmodel.models import Body
 from planetpost.models import Planet_Post
 from django.views import View
+from django.core.paginator import Paginator, EmptyPage
 import requests
 
 
@@ -11,6 +13,18 @@ class PlanetView(View):
 
     def get(self, request):
         planets = Body.objects.all()
+        
+        paginator = Paginator(planets, 30)
+        
+        page_num = request.GET.get('page', 1)
+        print(page_num)
+        
+        try:
+            page = paginator.page(page_num)
+        except EmptyPage:
+            page = paginator.page(1)
+
+
         if not planets:
             r = requests.get('https://api.le-systeme-solaire.net/rest/bodies/', params=request.GET)
             data = r.json()
@@ -42,7 +56,7 @@ class PlanetView(View):
             planets = Body.objects.all()
             
 
-        return render(request, 'planet.html', {'planets': planets})
+        return render(request, 'planet.html', {'planets': page, 'page_number': int(page_num), 'paginator': paginator})
 
 
 

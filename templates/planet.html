@@ -1,10 +1,49 @@
 {% extends 'base.html' %}
 {% block content %}
-{% for planet in planets %}
-    <ul>
-        <li>
-            <a href="/planet/{{planet.id}}/">{{planet.name}}</a>
-        </li>
-    </ul>
-{% endfor %}
+
+<table class="highlight">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>English Name</th>
+            <th>Discovered By</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        {% for planet in planets %}
+        <tr>
+            <td>
+                <a href="/planet/{{planet.id}}/">{{planet.name}}</a>
+            </td>
+            <td>
+                {{planet.englishName}}
+            </td>
+            <td>
+                {{planet.discoveredBy}}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+  </table>
+
+
+<ul class="pagination">
+    {% if planets.has_previous %}
+    <li ><a href="{% url 'planet' %}?page={{planets.previous_page_number}}"><i class="material-icons">chevron_left</i></a></li>
+    {% else %}
+    <li class="disabled"><a href=""><i class="material-icons">chevron_left</i></a></li>
+    {% endif %}
+
+    {% for i in paginator.page_range %}
+        <li class="{% if i == page_number %} active {% else %} waves-effect {% endif %}"><a href="?page={{i}}">{{i}}</a></li>
+    {% endfor %}
+
+
+    {% if planets.has_next %}
+    <li ><a href="{% url 'planet' %}?page={{planets.next_page_number}}"><i class="material-icons">chevron_right</i></a></li>
+    {% else %}
+    <li class="disabled"><a href=""><i class="material-icons">chevron_right</i></a></li>
+    {% endif %}
+  </ul>
 {% endblock %}
