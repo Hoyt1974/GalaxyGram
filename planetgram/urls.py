@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import handler400, handler404, handler500
 from django.contrib import admin
 from django.urls import path
+from django.urls import re_path
+from django.views.static import serve
 
 from authentication import views
 from authentication.views import SignupView
@@ -53,9 +55,19 @@ urlpatterns = [
 
 #     path("planet/<int:planet_id>/", planet_detail_view, name="planet_detail"),
     path("planet/<int:planet_id>/", PlanetDetailView.as_view(), name="planet_detail"),
+
 ]
 # urlpatterns += api_urls
 # <int:planet_id>/'
+
+
+if not settings.DEBUG:
+    urlpatterns += [
+        re_path(r'^media/(?P<path>.*)$', serve, {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+    ]
+
 
 
 handler404 = 'authentication.views.error_404_view'
