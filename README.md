@@ -1,6 +1,6 @@
-#Galaxy Gram
+# Galaxy Gram
 
-##Our Awesome Project!!
+## Our Awesome Project!!
 
 Welcome to GalaxyGram, the final frontier! Boldly going where (hopefully) no Kenzie students have gone before.
 
