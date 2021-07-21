@@ -2,8 +2,12 @@
 
 ##Our Awesome Project!!
 
-Art for project(readme ex.)
+Welcome to GalaxyGram, the final frontier! Boldly going where (hopefully) no Kenzie students have gone before.
 
-test
+Here, you can look up your favorite exoplanets -- we have them all listed here, thanks to an API.
 
-![IMG_20200727_141139261](https://user-images.githubusercontent.com/69166409/124664479-82b15180-de79-11eb-83b5-53f7941a51c3.jpg)
+![Screen Shot 2021-07-20 at 6 09 32 PM](https://user-images.githubusercontent.com/69166409/126406752-ec5bb805-3141-4dbf-a686-890f73d4eb95.png)
+
+You can can also make your own posts about the planets, and upload your own amateur photos and artwork.
+
+To use on your own machine, clone the repo, poetry add your dependencies, and may the Force be with you!
