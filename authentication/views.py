@@ -5,17 +5,14 @@ from django.contrib.auth import authenticate, login, logout
 from authentication.forms import LoginForm
 from planetpost.models import Planet_Post
 from django.views import View
-# Create your views here.
 
 
 def error_404_view(request, exception):
   return render(request, '404.html')
 
 
-
 def error_500_view(request, *args, **kwargs):
   return render(request, '500.html')
-
 
 
 class SignupView(View):
@@ -31,9 +28,6 @@ class SignupView(View):
     if form.is_valid():
       data = form.cleaned_data
       if MyUser.objects.filter(username=data['username']):
-        # I was debating what to do here, I had it reverse to login just because "cant make that user, it exists already"
-        # I was thinking about doing something else, just hadn't decided yet
-        # Like what? I dunno, an alert "What are you doing? That already exists! Are you stupid, human?"
         return HttpResponseRedirect(reverse('login'))
       newbie = MyUser.objects.create_user(
         username=data['username'],
@@ -41,10 +35,7 @@ class SignupView(View):
     )
       newbie.save()
       login(request, newbie)
-    # form=LoginForm()  
     return HttpResponseRedirect(request.GET.get("next", "/"))
-
-
 
 
 def login_view(request):

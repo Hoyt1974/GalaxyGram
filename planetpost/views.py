@@ -80,37 +80,37 @@ def comment_total_vote(request):
 
 def comment_edit(request, comment_id):
     comment = get_object_or_404(Planet_Comments, id=comment_id)
-    # if request.user is the same as comment.author:
-    if request.method == "POST":
-        form = UserPostForm(request.POST, instance=comment)
-        if form.is_valid():
-            comment = form.save(commit=False)
+    if request.user == comment.author:
+        if request.method == "POST":
+            form = UserPostForm(request.POST, instance=comment)
+            if form.is_valid():
+                comment = form.save(commit=False)
             # comment.author = request.user
-            comment.save()
-            return redirect("post", comment.post.id)
-    else:
-        form = UserPostForm(instance=comment)
-    return render(request, "generic_form.html", {"form": form})
+                comment.save()
+                return redirect("post", comment.post.id)
+        else:
+            form = UserPostForm(instance=comment)
+        return render(request, "generic_form.html", {"form": form})
 
 
 def post_edit(request, post_id):
     post = get_object_or_404(Planet_Post, id=post_id)
-    # if request.user is the same as post.author:
-    if request.method == "POST":
-        form = PlanetPostForm(request.POST, instance=post)
-        if form.is_valid():
-            post = form.save(commit=False)
+    if request.user == post.author:
+        if request.method == "POST":
+            form = PlanetPostForm(request.POST, instance=post)
+            if form.is_valid():
+                post = form.save(commit=False)
             # post.author = request.user
-            post.save()
-            return redirect("post", post.id)
-    else:
-        form = PlanetPostForm(instance=post)
+                post.save()
+                return redirect("post", post.id)
+        else:
+            form = PlanetPostForm(instance=post)
     return render(request, "generic_form.html", {"form": form})
 
 
 def comment_delete(request, comment_id):
     comment = get_object_or_404(Planet_Comments, id=comment_id)
-    if request.user == comment.author:
+    if request.user == comment.author or request.user == comment.post.author:
         comment.delete()
     return redirect(request.META['HTTP_REFERER'])
 
