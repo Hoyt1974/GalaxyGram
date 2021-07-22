@@ -24,3 +24,7 @@ h2 {
   text-align: center;
   font-size: 4em;
 }
+.button {
+  color:rgb(177, 16, 16);
+  display:block;
+}

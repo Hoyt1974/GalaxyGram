@@ -11,13 +11,13 @@
   <p>Axial Tilt: {{planet.axialTilt}}</p>
   <p>Average Temperature: {{planet.avgTemp}}</p>
 
-  <h3>Like this? Post about it for everyone to see!</h3>
+  <h4>Like this? Post about it for everyone to see!</h4>
 
   <a href="/addpost/{{planet.id}}">Make a Post!</a>
   <hr />
 
   {% for foo in posts %}
-  <h4>{{ foo.title }}</h4>
+  <h5>{{ foo.title }}</h5>
   <a href="/planet_post/{{ foo.id }}"
     ><img src="{{ foo.planet_img.url }}" height="50px" width="50px"
   /></a>

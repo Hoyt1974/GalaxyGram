@@ -1,10 +1,10 @@
 {% extends 'base.html' %} {% block content %}
 <div class="detail-page">
   <a href="/planet/{{post.body.id}}/"><h2>{{post.body}}</h2></a>
-  Posted by: <br /><a href="/profile/{{post.author.id}}/">{{post.author}}</a>
+  Posted by <a href="/profile/{{post.author.id}}/">{{post.author}}</a>
   <br /><br />
-  Title:<br />
-  <h3>{{post.title}}</h3>
+  
+  <h4>{{post.title}}</h4>
   {{post.post}}<br /><br />Posted on: {{post.creation_time}}
   <br />
   <br />
@@ -15,27 +15,34 @@
     height="300px"
   />
   <br />
-  <li><a href="/up_vote/{{post.id}}/">Upvote</a></li>
-  <li><a href="/down_vote/{{post.id}}/">Downvote</a></li>
-  <li><a href="/post_edit/{{post.id}}/">Edit</a></li>
-  <li><a href="/post_delete/{{post.id}}/">Delete</a></li>
-  <li>Total Votes: {{ post.total_votes }}</li>
-  <ul>
+  <a href="/up_vote/{{post.id}}/">Upvote</a>
+  <span>Total Votes: {{ post.total_votes }}</span>
+  <a href="/down_vote/{{post.id}}/">Downvote</a>
+  {% if post.author == user %}
+  <br><a href="/post_edit/{{post.id}}/">Edit</a>
+  <a href="/post_delete/{{post.id}}/">Delete</a>
+  {% endif %}
+<br><br>
     <a href="add_comment/">add comment</a>
     <h3>Comments</h3>
     <br />
     {% for comment in comments %}
-    <li>
-      Comment by: {{comment.author}}<br />
-      {{comment.comment}}<br />
-      Posted on: {{comment.creation_time}}
-    </li>
-    <li><a href="/comment_up_vote/{{comment.id}}/">Upvote</a></li>
-    <li><a href="/comment_down_vote/{{comment.id}}/">Downvote</a></li>
-    <li>Total Votes: {{ comment.total_votes }}</li>
-    <li><a href="/comment_edit/{{comment.id}}/">Edit</a></li>
-    <li><a href="/comment_delete/{{comment.id}}/">Delete</a></li>
+    <div>
+      Comment by <a href='/profile/{{comment.author.id}}/'>{{comment.author}}:</a><br />
+      <strong>{{comment.comment}}</strong><br />
+      Posted on {{comment.creation_time}}
+    </div><br>
+    <a href="/comment_up_vote/{{comment.id}}/">Upvote</a></button>
+    <span>Total Votes: {{ comment.total_votes }}</span>
+    <a href="/comment_down_vote/{{comment.id}}/">Downvote</a></button>
+    &nbsp&nbsp&nbsp
+    {% if comment.author == user %}
+    <a href="/comment_edit/{{comment.id}}/">Edit</a></button>
+    &nbsp
+    <a href="/comment_delete/{{comment.id}}/">Delete</a></button>
+    {% endif %}
+    <hr>
     {% endfor %}
-  </ul>
+
 </div>
 {% endblock %}

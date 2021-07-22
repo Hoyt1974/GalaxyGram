@@ -6,23 +6,24 @@
     {{user.username}}
   </h2>
 
-  <span>Date joined: {{user.date_joined }}</span>
-  <br />
-  <span>Last seen: {{ user.last_login }}</span><br /><br />
   <strong>Name:</strong>
   <p class="name">{{ user.first_name }} {{user.last_name }}</p>
   <strong>Email:</strong><br />
   <a href="/admin/">{{ user.email }}</a>
   <!-- {% if user.groups %}
-{% for group in user.groups.all %}
-{{ group.id }}
-{% endfor %}
-{% endif %} -->
-  <br /><br />
-  {% if user.bio %}
-  <strong>Bio:</strong>
-  <h5>{{user.bio}}</h5>
+    {% for group in user.groups.all %}
+    {{ group.id }}
+    {% endfor %}
+    {% endif %} -->
+    <br /><br />
+    {% if user.bio %}
+    <strong>Bio:</strong>
+    <h5>{{user.bio}}</h5><br>
+    <span>Date joined: {{user.date_joined }}</span>
+    <br />
+    <span>Last seen: {{ user.last_login }}</span><br /><br />
   {% endif %} {% if user.id == request.user.id %}
+  <br>
   <button><a href="/edit/{{user.id}}/">Edit profile</a></button>
   {% endif %} {% endif %}
   <br />
